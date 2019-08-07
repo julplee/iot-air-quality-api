@@ -1,6 +1,6 @@
 # Go API for IOT Air Quality
 
-see: https://github.com/julplee/iot-air-quality
+see: <https://github.com/julplee/iot-air-quality>
 
 A RESTful API to store IOT metrics with Go using gorilla/mux (API library) and Gorm (ORM for Go)
 
@@ -8,11 +8,11 @@ A RESTful API to store IOT metrics with Go using gorilla/mux (API library) and G
 
 ### Download this project
 
-`go get github.com/julplee/iot-air-quality-api`
+To download the project you can simply execute `go get github.com/julplee/iot-air-quality-api`
 
 Before running API server, you must configure the database with your own information in config.go
 
-`
+```go
 func GetConfig() *Config {
     return &Config{
         DB: &DBConfig{
@@ -24,10 +24,12 @@ func GetConfig() *Config {
         }
     }
 }
-`
+```
 
 ### Build & run
 
-`cd iot-air-quality-api`
-`go build`
-`./iot-air-quality-api`
+```bash
+cd iot-air-quality-api
+go build
+./iot-air-quality-api
+```
