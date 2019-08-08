@@ -6,6 +6,8 @@ import (
 	"net/http"
 
 	"../config"
+	"./handler"
+	"./model"
 
 	"github.com/gorilla/mux"
 	"github.com/jinzhu/gorm"
@@ -32,7 +34,7 @@ func (a *App) Initialize(config *config.Config) {
 		log.Fatal("Could not connect to database")
 	}
 
-	// a.DB =
+	a.DB = model.DBMigrate(db)
 	a.Router = mux.NewRouter()
 	a.setRouters()
 }
@@ -44,6 +46,11 @@ func (a *App) setRouters() {
 // Get wraps the router for GET HTTP method
 func (a *App) Get(path string, f func(w http.ResponseWriter, r *http.Request)) {
 	a.Router.HandleFunc(path, f).Methods("GET")
+}
+
+// Run the app on its router
+func (a *App) Run(host string) {
+	log.Fatal(http.ListenAndServe(host, a.Router))
 }
 
 // RequestHandlerFunction defines a handler function for an HTTP request

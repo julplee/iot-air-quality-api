@@ -9,6 +9,6 @@ func main() {
 	config := config.GetConfig()
 
 	app := &app.App{}
-	app.Initiailize(config)
+	app.Initialize(config)
 	app.Run(":3000")
 }
