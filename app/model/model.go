@@ -1,22 +1,18 @@
 package model
 
 import (
-	"time"
-
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 )
 
 type PM25 struct {
 	gorm.Model
-	Value   float32   `json:value`
-	DateUTC time.Time `json:DateUTC`
+	Value float64 `json:value`
 }
 
 type PM10 struct {
 	gorm.Model
-	Value   float32   `json:value`
-	DateUTC time.Time `json:DateUTC`
+	Value float64 `json:value`
 }
 
 func DBMigrate(db *gorm.DB) *gorm.DB {
