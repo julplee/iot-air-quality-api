@@ -41,11 +41,17 @@ func (a *App) Initialize(config *config.Config) {
 
 func (a *App) setRouters() {
 	a.Get("/pm25", a.handleRequest(handler.GetAllPM25))
+	a.Post("/pm25", a.handleRequest(handler.CreatePM25))
 }
 
 // Get wraps the router for GET HTTP method
 func (a *App) Get(path string, f func(w http.ResponseWriter, r *http.Request)) {
 	a.Router.HandleFunc(path, f).Methods("GET")
+}
+
+// Post wraps the router for POST HTTP method
+func (a *App) Post(path string, f func(w http.ResponseWriter, r *http.Request)) {
+	a.Router.HandleFunc(path, f).Methods("POST")
 }
 
 // Run the app on its router
