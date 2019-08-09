@@ -13,7 +13,13 @@ type PM25 struct {
 	DateUTC time.Time `json:DateUTC`
 }
 
+type PM10 struct {
+	gorm.Model
+	Value   float32   `json:value`
+	DateUTC time.Time `json:DateUTC`
+}
+
 func DBMigrate(db *gorm.DB) *gorm.DB {
-	db.AutoMigrate(&PM25{})
+	db.AutoMigrate(&PM25{}, &PM10{})
 	return db
 }
