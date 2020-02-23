@@ -1,5 +1,7 @@
 package config
 
+import "io/ioutil"
+
 // Config contains a database configuration
 type Config struct {
 	DB *DBConfig
@@ -18,13 +20,20 @@ type DBConfig struct {
 
 // GetConfig gets the configuration of the database
 func GetConfig() *Config {
+	data, err := ioutil.ReadFile("password.txt")
+	if err != nil {
+		panic(err)
+	}
+
+	password := string(data)
+
 	return &Config{
 		DB: &DBConfig{
 			Dialect:  "mysql",
 			Host:     "127.0.0.1",
 			Port:     3306,
 			Username: "guest",
-			Password: "password",
+			Password: password,
 			Name:     "iot-air-quality",
 			Charset:  "utf8",
 		},
