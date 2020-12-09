@@ -10,7 +10,8 @@ import (
 	"./model"
 
 	"github.com/gorilla/mux"
-	"github.com/jinzhu/gorm"
+	"gorm.io/driver/mysql"
+	"gorm.io/gorm"
 )
 
 // App has a Router and a Database
@@ -29,7 +30,7 @@ func (a *App) Initialize(config *config.Config) {
 		config.DB.Name,
 		config.DB.Charset)
 
-	db, err := gorm.Open(config.DB.Dialect, dbURI)
+	db, err := gorm.Open(mysql.Open(dbURI), &gorm.Config{})
 	if err != nil {
 		log.Fatal("Could not connect to database")
 	}

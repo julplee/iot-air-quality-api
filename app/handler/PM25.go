@@ -5,7 +5,7 @@ import (
 	"net/http"
 
 	"../model"
-	"github.com/jinzhu/gorm"
+	"gorm.io/gorm"
 )
 
 func GetAllPM25(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
